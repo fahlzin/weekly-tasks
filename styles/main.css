@@ -65,6 +65,7 @@ h1 {
     font-family: Roboto;
     font-weight: 400;
     font-size: 14px;
+    ime-mode: disabled; /* evita autocompletar exagerado em alguns teclados */
 }
 
 .taskList {
