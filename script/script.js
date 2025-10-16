@@ -1,7 +1,7 @@
 let mainTitle = document.querySelector('h1');
 mainTitle.innerText = 'WEEKLY-TASKS';
 
-const dayNames = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+const dayNames = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
 const days = document.querySelectorAll('.day');
 
 days.forEach((item, index) => {
@@ -15,12 +15,14 @@ days.forEach((item, index) => {
 
   // campo de input
   const input = document.createElement('input');
+  input.classList.add('addTask');
   input.type = 'text';
-  input.placeholder = 'Incluir tarefa (Enter)';
+  input.placeholder = 'Incluir tarefa ( Enter )';
   listBox.appendChild(input);
 
   // lista de tarefas
   const taskList = document.createElement('ul');
+  taskList.classList.add('taskList');
   listBox.appendChild(taskList);
 
   // adicionar tarefa ao pressionar ENTER
@@ -31,14 +33,23 @@ days.forEach((item, index) => {
 
       // criar li com checkbox
       const li = document.createElement('li');
+      li.classList.add('taskItem');
       const checkbox = document.createElement('input');
+      checkbox.classList.add('checkbox');
       checkbox.type = 'checkbox';
 
       // quando marcado, remove o item
-      checkbox.addEventListener('change', () => li.remove());
+      checkbox.addEventListener('change', () => {
+      li.classList.add('done');
+
+      setTimeout(() => li.remove(), 500);
+});
 
       li.appendChild(checkbox);
-      li.appendChild(document.createTextNode(taskText));
+      const span = document.createElement('span');
+      span.classList.add('taskText');
+      span.textContent = taskText;
+      li.appendChild(span);
       taskList.appendChild(li);
 
       input.value = '';
